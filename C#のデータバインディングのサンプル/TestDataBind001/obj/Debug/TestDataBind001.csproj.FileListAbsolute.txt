@@ -1,0 +1,10 @@
+C:\Users\star\source\repos\TestDataBind001\TestDataBind001\bin\Debug\TestDataBind001.exe.config
+C:\Users\star\source\repos\TestDataBind001\TestDataBind001\bin\Debug\TestDataBind001.exe
+C:\Users\star\source\repos\TestDataBind001\TestDataBind001\bin\Debug\TestDataBind001.pdb
+C:\Users\star\source\repos\TestDataBind001\TestDataBind001\obj\Debug\TestDataBind001.csprojAssemblyReference.cache
+C:\Users\star\source\repos\TestDataBind001\TestDataBind001\obj\Debug\TestDataBind001.Form1.resources
+C:\Users\star\source\repos\TestDataBind001\TestDataBind001\obj\Debug\TestDataBind001.Properties.Resources.resources
+C:\Users\star\source\repos\TestDataBind001\TestDataBind001\obj\Debug\TestDataBind001.csproj.GenerateResource.cache
+C:\Users\star\source\repos\TestDataBind001\TestDataBind001\obj\Debug\TestDataBind001.csproj.CoreCompileInputs.cache
+C:\Users\star\source\repos\TestDataBind001\TestDataBind001\obj\Debug\TestDataBind001.exe
+C:\Users\star\source\repos\TestDataBind001\TestDataBind001\obj\Debug\TestDataBind001.pdb
