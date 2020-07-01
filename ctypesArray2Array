@@ -1,0 +1,17 @@
+'''
+c_byteの配列をuint32のリストに変換する方法
+'''
+from ctypes import *
+import numpy as np
+
+c = ((c_byte * 128))(*range(128))
+cc = cast(c, POINTER(c_uint32))
+a = np.ctypeslib.as_array(cc, (32,))
+print("len(a)=", len(a))
+print("type(a)=", type(a))
+aa = a.tolist()
+print("len(aa)=", len(aa))
+print("type(aa)=", type(aa))
+for n in aa:
+    print(hex(n))
+    
