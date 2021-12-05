@@ -27,6 +27,12 @@ void test_labs(void)
     TEST_ASSERT_EQUAL(0x7fffffffffffffffLL, _labs(0x8000000000000000LL));
 }
 
+void test_ext(void)
+{
+    TEST_ASSERT_EQUAL_HEX32(0xFFFFF21F, _ext(0x07A43F2A, 10, 19));
+    TEST_ASSERT_EQUAL_HEX32(0x000003B6, _ext(0x03B6E7D5, 3, 19));
+}
+
 void test_extr(void)
 {
     TEST_ASSERT_EQUAL_HEX32(0xFFFFF21F, _extr(0x07A43F2A, 0x153));
@@ -113,9 +119,9 @@ void test_compare_method(void)
     TEST_ASSERT_EQUAL_HEX32(0x00000001, _cmpeq2(0xf23a3789, 0x04b83789));
     TEST_ASSERT_EQUAL_HEX32(0x00000003, _cmpeq2(0x01b62451, 0x01b62451));
 
-    TEST_ASSERT_EQUAL_HEX32(0x0000000a, _cmpeq4(0x023a4e1c, 0x02b84e76));   // true, false, true, false
-    TEST_ASSERT_EQUAL_HEX32(0x00000003, _cmpeq4(0xf23a3789, 0x04b83789));   // false, false, true, true
-    TEST_ASSERT_EQUAL_HEX32(0x00000007, _cmpeq4(0x01b62451, 0x05b62451));   // false, true, true, true
+    TEST_ASSERT_EQUAL_HEX32(0x0000000a, _cmpeq4(0x023a4e1c, 0x02b84e76)); // true, false, true, false
+    TEST_ASSERT_EQUAL_HEX32(0x00000003, _cmpeq4(0xf23a3789, 0x04b83789)); // false, false, true, true
+    TEST_ASSERT_EQUAL_HEX32(0x00000007, _cmpeq4(0x01b62451, 0x05b62451)); // false, true, true, true
 
     TEST_ASSERT_EQUAL_HEX32(0x00000001, _cmpgt2(0x11056e30, 0x11056980));
     TEST_ASSERT_EQUAL_HEX32(0x00000000, _cmpgt2(0xf3483789, 0x04b84975));
@@ -132,7 +138,6 @@ void test_compare_method(void)
     TEST_ASSERT_EQUAL_HEX32(0x00000006, _cmpltu4(0x253a1ce4, 0x02b84e76));
     TEST_ASSERT_EQUAL_HEX32(0x00000001, _cmpltu4(0x89f23a37, 0x048f1789));
     TEST_ASSERT_EQUAL_HEX32(0x0000000d, _cmpltu4(0x12339d51, 0x756724c5));
-
 }
 
 void test_sadd(void)
@@ -234,6 +239,49 @@ void test_dotpnrus2(void)
 {
     TEST_ASSERT_EQUAL_HEX32(0xfffff6fa, _dotpnrus2(0x325c8036, 0x3629274a));
     TEST_ASSERT_EQUAL_HEX32(0x00002bb4, _dotpnrus2(0xb1c30244, 0x3ff65010));
+}
+
+void test_dotprsu2(void)
+{
+    TEST_ASSERT_EQUAL_HEX32(0x00001e55, _dotprsu2(0x3629274a, 0x325c8036));
+    TEST_ASSERT_EQUAL_HEX32(0xffffed29, _dotprsu2(0xb1c30244, 0x3ff65010));
+}
+
+void test_dotpsu4(void)
+{
+    TEST_ASSERT_EQUAL_HEX32(0x0000214a, _dotpsu4(0x6a321193, 0xb1746ca4));
+    TEST_ASSERT_EQUAL_HEX32(0x00003181, _dotpsu4(0x3ff65010, 0xc3560244));
+}
+
+void test_dotpus4(void)
+{
+    TEST_ASSERT_EQUAL_HEX32(0x0000214a, _dotpus4(0xb1746ca4, 0x6a321193));
+    TEST_ASSERT_EQUAL_HEX32(0x00003181, _dotpus4(0xc3560244, 0x3ff65010));
+}
+
+void test__dotpu4(void)
+{
+    TEST_ASSERT_EQUAL_HEX32(0x0000c54a, _dotpu4(0x6a321193, 0xb1746ca4));
+}
+
+void test_dpack2(void)
+{
+    TEST_ASSERT_EQUAL_HEX64(0x8765123443215678LL, _dpack2(0x87654321, 0x12345678));
+}
+
+void test_dpackx2(void)
+{
+    TEST_ASSERT_EQUAL_HEX64(0x5678876543211234LL, _dpackx2(0x87654321, 0x12345678));
+}
+
+void test_dtol(void)
+{
+    TEST_ASSERT_EQUAL_HEX64(0x3FF0000000000000LL, _dtol(1.0));
+}
+
+void test_dtoll(void)
+{
+    TEST_ASSERT_EQUAL_HEX64(0x3FF0000000000000LL, _dtol(1.0));
 }
 
 #endif // TEST

@@ -137,6 +137,16 @@ unsigned int _clr(unsigned int src2, unsigned int csta, unsigned int cstb);
 unsigned int _clrr(unsigned int src2, int src1);
 
 /**
+ * @brief 
+ * 
+ * @param src2 
+ * @param csta 
+ * @param cstb 
+ * @return int 
+ */
+int _ext(int src2, unsigned csta, unsigned cstb);
+
+/**
  * @brief EXT
  *
  * Extracts the specified field in src2, sign-extended to 32 bits. The
@@ -365,13 +375,67 @@ int _dotpnrsu2(int src1, unsigned src2);
  * @return int 
  */
 int _dotpnrus2(unsigned src1, int src2);
+/**
+ * @brief DOTPRSU2
+ * 
+ * @param src1 
+ * @param src2 
+ * @return int 
+ */
 int _dotprsu2(int src1, unsigned src2);
+/**
+ * @brief DOTPSU4
+ * 
+ * @param src1 
+ * @param src2 
+ * @return int 
+ */
 int _dotpsu4(int src1, unsigned src2);
+/**
+ * @brief DOTPUS4
+ * 
+ * @param src1 
+ * @param src2 
+ * @return int 
+ */
 int _dotpus4(unsigned src1, int src2);
+/**
+ * @brief DOTPU4
+ * 
+ * @param src1 
+ * @param src2 
+ * @return unsigned 
+ */
 unsigned _dotpu4(unsigned src1, unsigned src2);
+/**
+ * @brief DPACK2
+ * 
+ * @param src1 
+ * @param src2 
+ * @return long 
+ */
 long long _dpack2(unsigned src1, unsigned src2);
+/**
+ * @brief DPACKX2
+ * 
+ * @param src1 
+ * @param src2 
+ * @return long 
+ */
 long long _dpackx2(unsigned src1, unsigned src2);
+/**
+ * @brief 
+ * 
+ * @param src 
+ * @return __int40_t 
+ */
 __int40_t _dtol(double src);
+/**
+ * @brief DTOLL
+ * 
+ * @param src 
+ * @return long 
+ */
 long long _dtoll(double src);
 
 /**

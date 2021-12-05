@@ -1,5 +1,6 @@
 #include "c6x.h"
 #include "limits.h"
+#include "string.h"
 
 int _abs(int src)
 {
@@ -193,6 +194,15 @@ unsigned int _bitr(unsigned int src)
         bit = _extu(src, i, 31);
         dst |= _extu(bit, i, 0);
     }
+    return dst;
+}
+
+int _ext(int src2, unsigned csta, unsigned cstb)
+{
+    int dst;
+
+    dst = src2 << csta;
+    dst = dst >> cstb;
     return dst;
 }
 
@@ -702,5 +712,103 @@ int _dotpnrus2(unsigned src1, int src2)
     b_lo = _extr(src2, (16 << 5) + 16);
     dst = (a_hi * b_hi) - (a_lo * b_lo) + 0x8000;
     dst = dst >> 16;
+    return dst;
+}
+
+int _dotprsu2(int src1, unsigned src2)
+{
+    int dst;
+    long long int33;
+    int a_hi, a_lo;
+    unsigned int b_hi, b_lo;
+    a_hi = _extr(src1, 16);
+    a_lo = _extr(src1, (16 << 5) + 16);
+    b_hi = _extur(src2, 16);
+    b_lo = _extur(src2, (16 << 5) + 16);
+    int33 = ((long long)a_hi * b_hi) + ((long long)a_lo * b_lo) + 0x8000;
+    dst = (int)(int33 >> 16);
+    return dst;
+}
+
+int _dotpsu4(int src1, unsigned src2)
+{
+    int dst;
+    int a0, a1, a2, a3;
+    unsigned int b0, b1, b2, b3;
+    a0 = _extr(src1, (24 << 5) + 24);
+    a1 = _extr(src1, (16 << 5) + 24);
+    a2 = _extr(src1, (8 << 5) + 24);
+    a3 = _extr(src1, 24);
+    b0 = _extur(src2, (24 << 5) + 24);
+    b1 = _extur(src2, (16 << 5) + 24);
+    b2 = _extur(src2, (8 << 5) + 24);
+    b3 = _extur(src2, 24);
+    dst = (a0 * b0) + (a1 * b1) + (a2 * b2) + (a3 * b3);
+    return dst;
+}
+int _dotpus4(unsigned src1, int src2)
+{
+    int dst;
+    unsigned int a0, a1, a2, a3;
+    int b0, b1, b2, b3;
+    a0 = _extur(src1, (24 << 5) + 24);
+    a1 = _extur(src1, (16 << 5) + 24);
+    a2 = _extur(src1, (8 << 5) + 24);
+    a3 = _extur(src1, 24);
+    b0 = _extr(src2, (24 << 5) + 24);
+    b1 = _extr(src2, (16 << 5) + 24);
+    b2 = _extr(src2, (8 << 5) + 24);
+    b3 = _extr(src2, 24);
+    dst = (a0 * b0) + (a1 * b1) + (a2 * b2) + (a3 * b3);
+    return dst;
+}
+unsigned _dotpu4(unsigned src1, unsigned src2)
+{
+    unsigned int dst;
+    unsigned int a0, a1, a2, a3;
+    unsigned int b0, b1, b2, b3;
+    a0 = _extur(src1, (24 << 5) + 24);
+    a1 = _extur(src1, (16 << 5) + 24);
+    a2 = _extur(src1, (8 << 5) + 24);
+    a3 = _extur(src1, 24);
+    b0 = _extur(src2, (24 << 5) + 24);
+    b1 = _extur(src2, (16 << 5) + 24);
+    b2 = _extur(src2, (8 << 5) + 24);
+    b3 = _extur(src2, 24);
+    dst = (a0 * b0) + (a1 * b1) + (a2 * b2) + (a3 * b3);
+    return dst;
+}
+long long _dpack2(unsigned src1, unsigned src2)
+{
+    long long dst;
+    unsigned int dst_o, dst_e;
+    dst_o = (_extu(src1,  0, 16) << 16) & 0xFFFF0000;
+    dst_e = (_extu(src1, 16, 16) << 16) & 0xFFFF0000;
+    dst_o |= _extu(src2,  0, 16) & 0x0000FFFF;
+    dst_e |= _extu(src2, 16, 16) & 0x0000FFFF;
+    dst = ((long long)dst_o << 32) & 0xFFFFFFFF00000000;
+    dst |= (long long)dst_e & 0x00000000FFFFFFFF;
+    return dst;
+}
+long long _dpackx2(unsigned src1, unsigned src2)
+{
+    long long dst;
+    unsigned int dst_o, dst_e;
+    dst_o = (_extu(src2, 16, 16) << 16) & 0xFFFF0000;
+    dst_e = (_extu(src1, 16, 16) << 16) & 0xFFFF0000;
+    dst_o |= _extu(src1,  0, 16) & 0x0000FFFF;
+    dst_e |= _extu(src2,  0, 16) & 0x0000FFFF;
+    dst = ((long long)dst_o << 32) & 0xFFFFFFFF00000000;
+    dst |= (long long)dst_e & 0x00000000FFFFFFFF;
+    return dst;
+}
+__int40_t _dtol(double src)
+{
+    return (__int40_t)_dtoll(src);
+}
+long long _dtoll(double src)
+{
+    long long dst;
+    memcpy(&dst, &src, sizeof(long long));
     return dst;
 }
